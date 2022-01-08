@@ -1,0 +1,20 @@
+<section class="menu menu-transition" [style.background-color]="theme.Color60Bold" [ngClass]="open ? 'open': ''">
+  <div class="free-space-top-x">
+    <i class="icon right-align icon-Close x-large" [style.color]="theme.Color10Fade" (click)="CloseMenu()"></i>
+  </div>
+  <h3 class="free-space-top-3x" [style.color]="theme.Color10Normal">
+    <i class="icon icon-Tag medium" [style.color]="theme.Color10Normal"></i>
+    Manage Tags
+  </h3>
+  <ul class="free-space-top-2x soft-list large" [style.color]="theme.Color10Normal">
+    <li class="free-space-top-x" *ngFor="let item of tags" [style.color]="theme.Color10Normal">
+      {{item.Caption  | caption :15}}
+      <i class="right-align icon-Trash icon large" [style.color]="theme.Color10Fade" (click)="RemoveTag(item.Id,item.IsUsing)"></i>
+      <input type="color" class="right-align color" #clr [value]="item.Color" (change)="EditTag(item.Id,clr.value)">
+    </li>
+  </ul>
+  <div class="free-space-top-2x add">
+    <input type="text" placeholder="tag name" (keydown.enter)="addTag.Caption != '' ? AddTag() : CloseMenu()" [style.border-bottom-color]="theme.Color30Bold" [style.color]="theme.Color10Bold" class="medium input-padding-x" [(ngModel)]="addTag.Caption">
+    <i class="icon-left icon-Add-Circle x-large" [style.color]="theme.Color10Fade" (click)="addTag.Caption != '' ? AddTag() : CloseMenu()"></i>
+  </div>
+</section>

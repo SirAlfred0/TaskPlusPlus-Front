@@ -1,0 +1,79 @@
+// Start Global Styles
+
+  .date
+  {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5rem;
+  }
+
+  .comment
+  {
+    position: relative;
+  }
+
+  .comment p{
+    display: inline-block;
+    width: 95%;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+
+  .user-profile
+  {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+// End Global Styles
+
+// Theme Dependecy Styles
+
+// End Theme Dependecy Styles
+
+// Screen Depedency Styles
+
+@media only screen and(max-device-width:900px){
+  .date
+  {
+    padding: 0.3rem;
+  }
+
+  .comment
+  {
+    margin-left: 4rem;
+  }
+
+  .user-profile
+  {
+    width: 3rem;
+    height: 3rem;
+    left: -4rem;
+    bottom: 1rem;
+  }
+
+  .reply
+  {
+    padding-left: 1rem;
+  }
+
+  .edit, .reply-to
+  {
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .padding-x
+  {
+    padding-bottom: 1.5rem;
+  }
+}
+
+// End Screen Dependecy Styles
+
+
+
+
+
+

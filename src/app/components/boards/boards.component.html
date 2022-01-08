@@ -1,0 +1,39 @@
+
+<section class="padding-2x" [ngClass]="selected ? 'not-mouse-event' : ''" #focusElement>
+  <div class="free-space-top-2x add">
+    <input type="text" placeholder="board name" (keydown.enter)="AddBoard(addInput.value)" [style.border-bottom-color]="theme.Color30Bold" [style.color]="theme.Color10Bold" class="medium input-padding-x" #addInput>
+    <i class="icon-left icon-Add-Circle x-large" [style.color]="theme.Color10Fade" (click)="AddBoard(addInput.value)"></i>
+  </div>
+  <div class="blank" [style.border-color]="theme.Color10Normal" *ngIf="boards.length == 0">
+    <h3 class="medium" [style.color]="theme.Color10Fade">here you can add new project to manage from the top input.</h3>
+    <h3 class="medium free-space-top-x" [style.color]="theme.Color10Fade">the board owner(you) can share board and add new roles or tags to the board</h3>
+    <h3 class="meduim free-space-top-x" [style.color]="theme.Color10Fade">roles specify Employees Limits And tags specify which role licenses affect which tasks.</h3>
+    <h3 class="meduim free-space-top-x" [style.color]="theme.Color10Fade">drag a board to left for that, and pull it to right for delete</h3>
+  </div>
+  <ul class="free-space-top-x" cdkDropList (cdkDropListDropped)="Drop($event)">
+    <ng-container *ngFor="let item of boards;let ind = index">
+      <h3 class="free-space-top-2x date" [style.color]="theme.Color10Fade" *ngIf="CanShow(item.CreationAt)">{{item.CreationAt | date:'MMM , y'}}</h3>
+      <li class="list-item padding-x option-info option-delete"  [style.background-color]="theme.Color30Bold" [ngClass]="{'list-grow' :selected && index == (ind + 1)}" [cdkDragStartDelay]="200" cdkDragPreviewContainer="parent"  cdkDrag [cdkDragData]="{id: item.Id, owner: item.IsOwner}" cdkDragLockAxis="x">
+          <input type="checkbox" #cb [id]="'item' + (ind + 1)">
+          <h1 id="self" [style.color]="theme.Color60Bold">
+            {{item.Caption | caption :20}}
+            <label *ngIf="item.IsOwner" [for]="'item' + (ind + 1)"><i class="icon right-align icon-Edit large" [style.color]="theme.Color60Bold" (click)="Rename((ind + 1),eI,cb)"></i></label>
+          </h1>
+          <h1 id="edit" [style.border-bottom-color]="theme.Color60Bold">
+            <input type="text" [style.color]="theme.Color60Bold" #eI [value]="item.Caption" (keydown.enter)="Rename(0,eI,cb);EditBoard(item.Id,item.Caption,eI.value,item.IsOwner)">
+            <label [for]="'item' + (ind + 1)"><i class="icon right-align icon-OK large" [style.color]="theme.Color60Bold" (click)="Rename(0,eI,cb);EditBoard(item.Id,item.Caption,eI.value,item.IsOwner)"></i></label>
+          </h1>
+          <a [routerLink]="'/task/' + item.Id">
+            <h4 class="free-space-top-x " [style.color]="theme.Color60Fade">Created By {{item.Creator}}</h4>
+            <ul class="free-space-top-2x horizontal-list">
+              <li [style.color]="theme.Color60Normal"><i class="icon icon-Tasks-List medium"></i>{{item.ChildsCount | CountControl}}</li>
+              <li [style.color]="theme.Color60Normal"><i class="icon icon-Employees-Count medium"></i>{{item.EmployeesCount | CountControl}}</li>
+              <li [style.color]="theme.Color60Normal"><i class="icon icon-Comment medium" ></i>{{item.CommentsCount | CountControl}}</li>
+            </ul>
+          </a>
+      </li>
+    </ng-container>
+  </ul>
+</section>
+<app-nav-board (focus)="Focus(focusElement,addInput)"></app-nav-board>
+<app-darken [Darken]="false"></app-darken>

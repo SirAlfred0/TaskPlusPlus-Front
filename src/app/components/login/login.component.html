@@ -1,0 +1,39 @@
+<section [ngClass]="IsResponcePending() ? 'not-mouse-event' : ''">
+  <input type="radio" name="pages" id="page1" checked>
+  <input type="radio" name="pages" id="page2">
+  <input type="radio" name="pages" id="page3">
+
+  <div class="pages">
+    <section class="page1">
+      <img src="./assets/icons/Icon1.svg" class="logo">
+      <h1>Welcome to Task++</h1>
+      <h2>Create an account to save all schedules and access them from anywhere</h2>
+      <h3>
+        <a class="button medium"><label for="page2"><i class="icon-Phone"></i> Continue with phone number</label></a>
+      </h3>
+    </section>
+    <section class="page2">
+      <img src="./assets/icons/Icon1.svg" class="logo">
+      <div class="input">
+        <input class="login-input" type="text" [style.border-color]="CheckPhoneNumber() ? '#0f0' : '#f00'" [(ngModel)]="SignInData.PhoneNumber">
+        <span class="small">Mobile</span>
+      </div>
+      <a class="button medium"><label  [for]="CheckPhoneNumber() ? 'page3' : ''">Submit</label></a>
+    </section>
+    <section class="page3">
+      <img src="./assets/icons/Icon1.svg" class="logo">
+      <h3>Welcome Back</h3>
+      <div class="input">
+        <input class="login-input" type="text" maxlength="4"/>
+        <span class="small">Enter Code Here</span>
+      </div>
+      <a class="button medium" (click)="SignIn()">Submit</a>
+    </section>
+  </div>
+  <ul class="pages">
+    <li><label for="page1"></label></li>
+    <li><label for="page2"></label></li>
+    <li><label></label></li>
+  </ul>
+</section>
+<app-darken [Darken]="IsResponcePending()"></app-darken>

@@ -1,0 +1,38 @@
+
+<section class="padding-2x" #focusElement>
+  <header>
+    <h1 [style.color]="theme.Color10Bold">{{ParentInfo.ParentName}}<h4 [style.color]="theme.Color10Normal" class=" right-align">{{ParentInfo.CreationDate | date:'MMM d , y'}}</h4></h1>
+    <h3 [style.color]="theme.Color10Normal" class="free-space-top-x">Owner: {{ParentInfo.Owner}}</h3>
+  </header>
+  <div class="free-space-top-2x add">
+    <h3 *ngIf="replyInfo.Id != ''" class="reply-to" [style.color]="theme.Color10Fade">ReplyTo: {{replyInfo.Content | caption :30}}<i class="icon icon-Cross medium right-align" [style.color]="theme.Color10Fade" (click)="CancelReply()"></i></h3>
+    <h3 *ngIf="this.editCommentEntity.Id != ''" class="edit" [style.color]="theme.Color10Fade">Edit: {{this.editCommentEntity.Content| caption :30}}<i class="icon icon-Cross medium right-align" [style.color]="theme.Color10Fade" (click)="CancelEdit()"></i></h3>
+    <input type="text" placeholder="comment" (keydown.enter)="this.editCommentEntity.Id == '' ? AddComment(addInput.value) : EditComment(addInput.value)" [style.border-bottom-color]="theme.Color30Bold" [style.color]="theme.Color10Bold" [value]="this.editCommentEntity.Id != '' ? this.editCommentEntity.Content : ''" class="medium input-padding-x free-space-top-x" #addInput>
+    <i class="icon-left icon-Add-Circle x-large" [style.color]="theme.Color10Fade" (click)="this.editCommentEntity.Id == '' ? AddComment(addInput.value) : EditComment(addInput.value)"></i>
+  </div>
+  <div class="blank" [style.border-color]="theme.Color10Normal" *ngIf="comments.length == 0">
+    <h3 class="medium" [style.color]="theme.Color10Fade">In this section you can add comments from the top input.</h3>
+    <h3 class="medium free-space-top-x" [style.color]="theme.Color10Fade">In the comments section you can discuss the details of a task before implementing it.</h3>
+    <h3 class="meduim free-space-top-x" [style.color]="theme.Color10Fade">It is also possible to edit and reply to a comment in the comments section(drag a comment to left or right).</h3>
+  </div>
+  <ul class="free-space-top-x" cdkDropList (cdkDropListDropped)="Drop($event)">
+    <ng-container *ngFor="let item of comments">
+      <h4 class="date free-space-top-2x" [style.color]="theme.Color10Fade" *ngIf="CanShow(item.CreationAt)">{{item.CreationAt | date:'MMM d , y'}}</h4>
+      <li [style.background-color]="theme.Color30Bold"  class="list-item padding-x comment option-reply" [ngClass]="{'option-edit': item.License }" [cdkDragData]="{id: item.Id, content: item.Content, ED: item.License}"  (dblclick)="MouseHold(item.Id,item.License)" [cdkDragStartDelay]="200"  cdkDrag cdkDragLockAxis="x" cdkDragPreviewContainer="parent">
+        <img class="user-profile" src="./assets/icons/Icon.svg">
+        <h3 [style.color]="SetColor(item.Sender)">{{item.Sender | caption :25}}</h3>
+        <div class="reply" [style.color]="theme.Color10Bold"  *ngIf ="item.ReplySender != ''">
+          <h3 class="free-space-top-x" [style.color]="SetColor(item.ReplySender)">{{item.ReplySender | caption :20}}</h3>
+          <p class="free-space-top-x medium" [style.color]="theme.Color60Fade">{{item.Reply}} </p>
+        </div>
+        <p class="free-space-top-x medium" [style.color]="theme.Color60Bold">
+          {{item.Content}}
+        </p>
+        <span class="right-align x-small" [style.color]="theme.Color60Fade">{{item.CreationAt | date:'shortTime'}}</span>
+      </li>
+    </ng-container>
+  </ul>
+</section>
+<app-nav-comments (add)="Focus(focusElement,addInput)"></app-nav-comments>
+<app-comment-top-menu [open]="topMenuOpenStatus" (closeMenu)="CloseMenu()"  (deleteEvent)="DeleteComment()"></app-comment-top-menu>
+<app-error-box [Message]="errorMessage"></app-error-box>

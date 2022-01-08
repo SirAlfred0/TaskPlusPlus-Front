@@ -1,0 +1,39 @@
+
+// Global Styles
+
+  nav a{
+    border-radius: 1rem;
+    display: inline-block;
+  }
+
+// End Global Styles
+
+// Theme Dependency Styles
+
+
+
+// End Theme Dependecy Styles
+
+// Screen Dependecy Styles
+
+  @media only screen and(max-device-width:900px)
+  {
+    nav a
+    {
+      padding: 1rem 2rem;
+      margin-left: 1rem;
+      width: 12rem;
+      font-size: 2rem;
+    }
+
+    .add > i
+    {
+      vertical-align: middle;
+    }
+  }
+
+// End Screen Dependecy Styles
+
+
+
+

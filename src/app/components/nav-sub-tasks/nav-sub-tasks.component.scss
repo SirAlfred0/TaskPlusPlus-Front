@@ -1,0 +1,10 @@
+li{
+  position: relative;
+}
+
+li > span
+{
+  position: absolute;
+  right: -1.3rem;
+  top: -0.5rem;
+}

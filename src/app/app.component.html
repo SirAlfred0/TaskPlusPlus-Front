@@ -1,0 +1,7 @@
+
+  <main [style.background-color]="ActiveTheme() ? theme.Color60Bold: ''">
+    <app-loading *ngIf="Loading"></app-loading>
+    <div [@triggerName]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </main>

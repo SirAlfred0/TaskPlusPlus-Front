@@ -1,0 +1,10 @@
+
+<section>
+  <ul class="options medium section-title-color">
+    <li [style.border-bottom-color]="theme.Color30Bold" [style.color]="theme.Color10Bold" routerLink="/contactlist">Friends<span [style.color]="'#fff'" class="x-small" *ngIf="changes.NewFriends != '0'">{{changes.NewFriends}}</span></li>
+    <li [style.border-bottom-color]="theme.Color30Bold" [style.color]="theme.Color10Bold" routerLink="/profile">Profile</li>
+    <li [style.border-bottom-color]="theme.Color30Bold" [style.color]="theme.Color10Bold" routerLink="/messages">System Messages <span [style.color]="'#fff'" class="x-small" *ngIf="changes.NewMessages != '0'">{{changes.NewFriends}}</span></li>
+    <li [style.border-bottom-color]="theme.Color30Bold" [style.color]="theme.Color10Bold" (click)="Logout()">Log out</li>
+  </ul>
+</section>
+<app-nav-system-messages></app-nav-system-messages>

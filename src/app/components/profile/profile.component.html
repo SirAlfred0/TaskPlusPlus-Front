@@ -1,0 +1,28 @@
+
+<section class="padding-2x">
+  <div class="profile-image">
+    <label for="image-file">
+      <img [src]="imgUrl == '' ? './assets/icons/Icon.svg' : imgUrl" class="photo" >
+    </label>
+    <input type="file" id="image-file" accept="image/*" disabled (change)="GetImage($event)">
+  </div>
+  <h3 [style.color]="theme.Color10Fade" class="small">Profile Photo will add in next versions</h3>
+  <div class="form free-space-top-3x">
+    <div class="form-control" (keydown.enter)="FocusNextSibiling(item2)">
+      <input type="text" required [style.color]="theme.Color10Bold" [style.border-color]="theme.Color30Bold" [value]="profile.FirstName" placeholder="First Name" [(ngModel)]="setProfileEntity.FirstName" autocomplete="user">
+    </div>
+    <div class="form-control" (keydown.enter)="FocusNextSibiling(item3)">
+      <input type="text" [style.color]="theme.Color10Bold"  #item2 [style.border-color]="theme.Color30Bold" [value]="profile.LastName" placeholder="Last Name" [(ngModel)]="setProfileEntity.LastName">
+    </div>
+    <div class="form-control" (keydown.enter)="FocusNextSibiling(item4)">
+      <input type="text" [style.color]="theme.Color10Bold" #item3 [style.border-color]="theme.Color30Bold" [value]="profile.Bio" placeholder="Bio" [(ngModel)]="setProfileEntity.Bio">
+    </div>
+    <div class="form-control" (keydown.enter)="SaveChanges()">
+      <input type="email" [style.color]="theme.Color10Bold" #item4 [style.border-color]="theme.Color30Bold" [value]="profile.Email" placeholder="email" [(ngModel)]="setProfileEntity.Email">
+    </div>
+    <div class="form-control">
+      <input type="text" [style.color]="theme.Color10Bold" [style.border-color]="theme.Color30Bold" required  [value]="profile.PhoneNumber" [(ngModel)]="setProfileEntity.PhoneNumber" disabled>
+    </div>
+  </div>
+</section>
+<app-nav-profile (SaveChangesEvent)="SaveChanges()"></app-nav-profile>

@@ -1,0 +1,44 @@
+<section class="menu menu-transition" [style.background-color]="theme.Color60Bold" [ngClass]="open ? 'open': ''">
+  <div class="free-space-top-x">
+    <i class="icon right-align icon-Close x-large" [style.color]="theme.Color10Fade" (click)="CloseMenu()"></i>
+  </div>
+  <h1 class="free-space-top-3x">
+    <input type="text" [(ngModel)]="newRole.Caption" placeholder="role name" class="input-padding-x" [style.color]="theme.Color10Bold">
+    <input type="color" class="right-align color" value="#fff" [(ngModel)]="newRole.Color">
+  </h1>
+  <ul class="free-space-top-2x">
+    <li class="medium free-space-top-x">
+      <input type="checkbox" id="iwt" [(ngModel)]="writeTask" [(ngModel)]="newRole.WriteTask" appSelect [mainColor]="theme.Color10Normal" [color]="theme.Color30Bold">
+      <label for="iwt" [style.color]="theme.Color10Normal">
+          write task
+      </label>
+    </li>
+    <li class="medium"><i class="icon icon-Tree x-large" [style.color]="theme.Color10Normal"></i>
+      <input type="checkbox" id="irt"  appSelect [mainColor]="theme.Color10Normal" [color]="theme.Color30Bold" [checked]="writeTask" [(ngModel)]="newRole.ReadTask" [disabled]="writeTask ? true : false">
+      <label for="irt" [style.color]="theme.Color10Normal">
+        read task
+      </label>
+    </li>
+    <li class="medium free-space-top-x">
+      <input type="checkbox" id="iwc" [(ngModel)]="writeComment" [(ngModel)]="newRole.WriteComment"  appSelect [mainColor]="theme.Color10Normal" [color]="theme.Color30Bold">
+      <label for="iwc" [style.color]="theme.Color10Normal">
+          write comment
+      </label>
+    </li>
+    <li class="medium"><i class="icon icon-Tree x-large" [style.color]="theme.Color10Normal"></i>
+      <input type="checkbox" id="irc"  appSelect [mainColor]="theme.Color10Normal" [color]="theme.Color30Bold" [checked]="writeComment" [(ngModel)]="newRole.ReadComment" [disabled]="writeComment ? true : false">
+      <label for="irc" [style.color]="theme.Color10Normal">
+        read comment
+      </label>
+    </li>
+    <!--
+    <li class="medium free-space-top-x" [style.color]="theme.Color10Normal">
+      <input type="checkbox" id="ict"  appSelect [mainColor]="theme.Color10Normal" [color]="theme.Color30Bold" [(ngModel)]="newRole.CompleteTask">
+      <label for="ict" [style.color]="theme.Color10Normal">
+        complete task
+      </label>
+    </li>
+    -->
+  </ul>
+  <i class="icon-Add-Circle right-align x2-large icon" [style.color]="theme.Color10Fade" (click)="AddRole()"></i>
+</section>

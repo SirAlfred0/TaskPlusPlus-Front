@@ -1,0 +1,44 @@
+input[type=file]
+{
+  display: none;
+}
+h3{
+  text-align: center;
+}
+
+@media only screen and(max-device-width:900px)
+  {
+    .profile-image{
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+    }
+
+    .photo{
+      width: 15rem;
+      height: 15rem;
+      border-radius: 50%;
+      width: 15rem;
+      height: 15rem;
+      object-fit: fill;
+    }
+
+    .form{
+      padding: 1rem;
+    }
+
+    .form-control
+    {
+      width: 100%;
+      padding: 0.5rem 0;
+    }
+
+    .form-control > input[type=text],.form-control > input[type=email]{
+      width: 100%;
+      border-width: 0.3rem !important;
+      border-style: solid !important;
+      outline: none;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+    }
+  }

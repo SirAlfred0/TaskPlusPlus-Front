@@ -1,0 +1,48 @@
+
+<section class="padding-2x" [ngClass]="reName || menuOpen ? 'not-mouse-event' : ''" #focusElement>
+  <header>
+    <h1 [style.color]="theme.Color10Bold">{{ParentInfo.ParentName}}<h4 [style.color]="theme.Color10Normal" class=" right-align">{{ParentInfo.CreationDate | date:'MMM d , y'}}</h4></h1>
+    <h3 [style.color]="theme.Color10Normal" class="free-space-top-x">Owner: {{ParentInfo.Owner}}</h3>
+  </header>
+  <div class="free-space-top-2x add">
+    <input type="text" [style.border-bottom-color]="theme.Color30Bold" (keydown.enter)="taskPermissions.WriteTask ? AddTask(addInput.value): LogError(errors['NotWriteTask'])" [style.color]="theme.Color10Bold" placeholder="task name" class="medium input-padding-x" #addInput>
+    <i class="icon-left icon-Add-Circle x-large" [style.color]="theme.Color10Fade" (click)="taskPermissions.WriteTask ? AddTask(addInput.value): LogError(errors['NotWriteTask'])"></i>
+  </div>
+  <div class="blank" [style.border-color]="theme.Color10Normal" *ngIf="tasks.length == 0">
+    <h3 class="medium" [style.color]="theme.Color10Fade">you can add task from the top input and manage them.</h3>
+    <h3 class="medium free-space-top-x" [style.color]="theme.Color10Fade">tasks with specific tags can be seen just by owner and those Employees that they have the role access.</h3>
+    <h3 class="meduim free-space-top-x" [style.color]="theme.Color10Fade">use this feature for a better experience when you are in charge of a project.</h3>
+    <h3 class="meduim free-space-top-x" [style.color]="theme.Color10Fade">Drag task to the left for adding a tag. You can also drag it to the right for delete.</h3>
+  </div>
+  <ul class="free-space-top-x" cdkDropList (cdkDropListDropped)="Drop($event)">
+    <ng-container *ngFor="let item of tasks;let ind = index">
+      <h4 class="free-space-top-3x date" [style.color]="theme.Color10Fade" *ngIf="CanShow(item.CreationAt)">{{item.CreationAt | date:'MMM d , y'}}</h4>
+      <li [style.background-color]="theme.Color30Bold" class="list-item padding-x option-info" [ngClass]="{'list-grow': selectedIndex == (ind + 1), 'option-delete': item.License}"  cdkDrag cdkDragPreviewContainer="parent" [cdkDragStartDelay]="200" [cdkDragData]="{id: item.Id,tags: item.Tags,deleteLicense: item.License}" cdkDragLockAxis="x">
+        <input type="checkbox" #cb [id]="'item' + (ind + 1)">
+        <h1 id="self" [style.color]="theme.Color60Bold">
+          {{item.Caption | caption :20}}
+          <label [for]="'item' + (ind + 1)" *ngIf="item.License">
+            <i class="icon right-align icon-Edit large" [style.color]="theme.Color60Bold" (click)="Rename(ind + 1,eI,cb)"></i>
+          </label>
+        </h1>
+        <h1 id = "edit" [style.border-bottom-color]="theme.Color60Bold">
+          <input type="text" [style.color]="theme.Color60Bold" #eI [value]="item.Caption" (keydown.enter)="Rename(0,eI,cb);EditTask(item.Id,item.Caption,eI.value,item.License)">
+          <label [for]="'item' + (ind + 1)">
+            <i class="icon right-align icon-OK large" [style.color]="theme.Color60Bold" (click)="Rename(0,eI,cb);EditTask(item.Id,item.Caption,eI.value,item.License)"></i>
+          </label>
+        </h1>
+        <a [routerLink]="'/subtask/' + item.Id">
+          <h4 class="free-space-top-x" [style.color]="theme.Color60Fade">Last Modified by {{item.LastModifiedBy}}</h4>
+          <ul class="free-space-top-2x horizontal-list">
+            <li [style.color]="theme.Color60Normal"><i class="icon icon-Tasks-List medium"></i>{{item.SubTasksCount| CountControl}}</li>
+            <li [style.color]="theme.Color60Normal"><i class="icon icon-Comment medium"></i>{{item.SubCommentsCount | CountControl}}</li>
+          </ul>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</section>
+<app-nav-sub-tasks [parentId]="parentId" [commentCount]="ParentInfo.SubCommentCounts" (add)="Focus(focusElement,addInput)"></app-nav-sub-tasks>
+<app-darken [Darken]="menuOpen"></app-darken>
+<app-task-info [activeRequestOn]="ActiveRequestOn()" (RemoveAsignEvent)="taskPermissions.IsOwner ? RemoveAsign($event) : LogError(errors['NotOwner'])" [tags]="tags" (newTagAsignEvent)="taskPermissions.IsOwner ? AsignTag($event) : LogError(errors['NotOwner'])" [parentId]="taskId" [accessToken]="accessToken" [boardTags]="boardTags" [open]="menuOpen" (close)="CloseMenu()"></app-task-info>
+<app-error-box [Message]="errorMessage"></app-error-box>

@@ -1,0 +1,889 @@
+
+
+// Global Styles
+
+  //fonts
+
+    @font-face {
+      font-family: 'corbel';
+      src: url(./assets/fonts/corbel/CORBEL.TTF);
+    }
+    @font-face {
+      font-family: 'roboto';
+      src: url(./assets/fonts/roboto/Roboto-Regular.ttf);
+    }
+    @font-face {
+      font-family: 'montserrat';
+      src: url(./assets/fonts/montserrat/Montserrat-Medium.ttf);
+    }
+    @font-face {
+      font-family: 'segoe-ui';
+      src: url('./assets/fonts/segoe ui/Segoe\ UI.ttf');
+    }
+
+  // End Fonts
+
+  // Font Icon Styles
+
+  @font-face {
+    font-family: 'icomoon';
+    src:  url('./assets/fonts/icemoon/icomoon.eot?3ax0k');
+    src:  url('./assets/fonts/icemoon/icomoon.eot?3ax0k#iefix') format('embedded-opentype'),
+      url('./assets/fonts/icemoon/icomoon.ttf?3ax0k') format('truetype'),
+      url('./assets/fonts/icemoon/icomoon.woff?3ax0k') format('woff'),
+      url('./assets/fonts/icemoon/icomoon.svg?3ax0k#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  [class^="option-"]::before,[class^="option-"]::after, [class*="option-"]::before, [class*="option-"]::after{
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .icon-Cross:before {
+    content: "\e91f";
+  }
+  .icon-Edit-2:before {
+    content: "\e920";
+  }
+  .icon-Reply:before {
+    content: "\e921";
+  }
+  .icon-Info:before {
+    content: "\e91c";
+  }
+  .icon-Selectbox:before {
+    content: "\e91d";
+  }
+  .icon-Trash:before {
+    content: "\e91e";
+  }
+  .icon-Back:before {
+    content: "\e91b";
+  }
+  .icon-Add-Contact:before {
+    content: "\e900";
+  }
+  .icon-Add:before {
+    content: "\e901";
+  }
+  .icon-Ok-Circle:before {
+    content: "\e902";
+  }
+  .icon-Add-Circle:before {
+    content: "\e903";
+  }
+  .icon-Save:before {
+    content: "\e904";
+  }
+  .icon-Bell:before {
+    content: "\e905";
+  }
+  .icon-Checkbox-Empty:before {
+    content: "\e906";
+  }
+  .icon-Checkbox-Full:before {
+    content: "\e907";
+  }
+  .icon-Checkbox-Half:before {
+    content: "\e908";
+  }
+  .icon-Close:before {
+    content: "\e909";
+  }
+  .icon-Cloud:before {
+    content: "\e90a";
+  }
+  .icon-Color-Box:before {
+    content: "\e90b";
+  }
+  .icon-Comment:before {
+    content: "\e90c";
+  }
+  .icon-Contact-List:before {
+    content: "\e90d";
+  }
+  .icon-Edit:before {
+    content: "\e90e";
+  }
+  .icon-Employees-Count:before {
+    content: "\e90f";
+  }
+  .icon-Employees:before {
+    content: "\e910";
+  }
+  .icon-Home:before {
+    content: "\e911";
+  }
+  .icon-OK:before {
+    content: "\e913";
+  }
+  .icon-Phone:before {
+    content: "\e914";
+  }
+  .icon-Roll:before {
+    content: "\e915";
+  }
+  .icon-Setting:before {
+    content: "\e916";
+  }
+  .icon-Share:before {
+    content: "\e917";
+  }
+  .icon-Tag:before {
+    content: "\e918";
+  }
+  .icon-Tasks-List:before {
+    content: "\e919";
+  }
+  .icon-Tree:before {
+    content: "\e91a";
+  }
+
+
+  // End Font Icon Styles
+
+  *,
+  *::before,
+  *::after
+  {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
+
+  html:not([class^="icon-"], [class*=" icon-"], [class^="option-"] , [class*="option-"])
+  {
+    font-family: 'roboto' !important;
+  }
+
+  html{
+    scroll-behavior: smooth;
+    font-size: 10px;
+  }
+
+  header
+  {
+    padding: 2rem 0.5rem;
+    border-radius: 1rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+
+  ul{
+    list-style: none;
+  }
+
+  h1,h2,h3,h4,h5,h6
+  {
+    font-weight: normal;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  a::selection , h1::selection , h2::selection, h3::selection, h4::selection,
+  h5::selection, h6::selection, P::selection, li::selection
+  {
+    background-color: transparent;
+  }
+
+  a:active
+  {
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+  input[type=text]:not(.login-input)
+  {
+    border: none;
+  }
+
+  input[type=text]
+  {
+    box-shadow: none;
+    outline: none;
+  }
+
+  img.logo
+  {
+    display: block;
+  }
+
+  .center
+  {
+    text-align: center;
+  }
+
+  .right-align
+  {
+    float: right;
+  }
+
+  .left-align
+  {
+    float: left;
+  }
+
+
+  .left-align::after,.left-align::Before , .right-align::after , .right-align::Before
+  {
+    clear: both;
+  }
+
+  .list-item
+  {
+    border-radius: 1rem;
+    transition: transform 0.3s ease-out;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .list-grow
+  {
+    transform: scaleX(1.03);
+    filter: opacity(1);
+    pointer-events: auto;
+  }
+
+  .not-mouse-event
+  {
+    pointer-events: none;
+  }
+
+  .horizontal
+  {
+    display: inline-block;
+  }
+
+  #edit
+  {
+    width: 100%;
+    display: none;
+  }
+
+  #edit > input
+  {
+    background-color: transparent;
+  }
+
+  input[type=checkbox]
+  {
+    display: none;
+  }
+
+  #self
+  {
+    display: block;
+  }
+
+  input[type=checkbox]:checked ~ #edit
+  {
+    display: block;
+  }
+
+  input[type=checkbox]:checked ~ #self
+  {
+    display: none;
+  }
+
+  .nav-bar
+  {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+
+
+  .add > i{
+    vertical-align: bottom;
+  }
+
+
+  .menu{
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden scroll;
+  }
+
+  .menu-transition
+  {
+    transition: bottom 0.5s ease-in-out;
+  }
+
+  .color
+  {
+    border: 0.2rem solid #000;
+    outline: none;
+    border-radius: 0.4rem;
+    overflow: hidden;
+  }
+
+  .open
+  {
+    bottom: 0 !important;
+    pointer-events: auto !important;
+  }
+
+  main{
+    min-width: 100vw;
+    min-height: 100vh;
+    padding-bottom: 35vh;
+    background-attachment: fixed;
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .cdk-drag-preview {
+    border-radius: 1rem;
+    list-style: none;
+    h1:nth-child(3){
+      display: none;
+    }
+  }
+
+  .cdk-drag-preview.option-delete::after
+  {
+    content: "\e91e";
+    position: absolute;
+  }
+
+  .cdk-drag-preview.option-edit::after
+  {
+    content: "\e920";
+    position: absolute;
+  }
+
+  .cdk-drag-preview.option-info::before
+  {
+    content: "\e91c";
+    position: absolute;
+  }
+
+  .cdk-drag-preview.option-reply::before
+  {
+    content: "\e921";
+    position: absolute;
+  }
+
+  .scroll
+  {
+    transform: scale(0.8);
+    margin: 0.1rem auto !important;
+  }
+
+  .navbar-fixed-top
+  {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    transition: top 0.3s ease-out;
+  }
+
+  .navbar-fixed-top > li
+  {
+    float: right;
+  }
+
+  .hide
+  {
+    display: none;
+  }
+// End Global Styles
+
+// Theme Dependecy Styles
+
+  input[type=text],input[type=email]
+  {
+    background-color: transparent;
+  }
+
+  input::placeholder
+  {
+    color: #5166b0;
+  }
+
+  .theme-purple
+  {
+    //colors are 5166b0 dae0f1 8160a9
+    .tag-color{
+      color: #fff;
+    }
+
+    .link
+    {
+      background-color: transparent;
+      color: #5166b0; //10 bold
+    }
+
+    a.selected
+    {
+      background-color: #8160a9 !important;//30 bold
+      color: #dae0f1 !important;
+    }
+
+    .date-color
+    {
+      color: #5166b066;//10 fade
+    }
+
+    .section-title-color
+    {
+      color: #5166b0b3;// 10 normal
+    }
+
+    .item-action-color
+    {
+      color: #8160a966;// 30 fade
+    }
+
+    .list > li
+    {
+      background-color: #8160a9;// 30 bold
+    }
+
+    .item-title-color
+    {
+      color:  #dae0f1; //60 bold
+    }
+
+    .item-title-color::placeholder
+    {
+      color:  #dae0f1b3;// 60 normal
+    }
+
+    .item-info-color
+    {
+      color: #dae0f166; // 60 fade
+    }
+
+    .icon-info-color-new
+    {
+      color: #dae0f1 !important; // 60 bold
+    }
+
+    .icon-info-color
+    {
+      color:  #dae0f1b3; // 60 normal
+    }
+
+    .item-detail-color
+    {
+      color:  #dae0f166; // 60 fade
+    }
+
+    .icon-action-color
+    {
+      color: #5166b066;// 10 fade
+    }
+
+    .icon-inside-action-color
+    {
+      color: #dae0f1; // 60 bold
+    }
+
+    .nav-bg-color
+    {
+      background-color: #dae0f1; //60 bold
+    }
+
+    .nav-item-color
+    {
+      color: #5166b0b3; // 10 normal
+    }
+
+    .reply
+    {
+      border-left: 0.1rem solid #5166b0; // 10 bold
+    }
+
+    .menu-bg-color
+    {
+      background-color: #dae0f1;// 60 bold
+    }
+
+    .page-title-color
+    {
+      color: #8160a9; // 30 bold
+    }
+
+    .page-info-color
+    {
+      color: #8160a966; // 30 normal
+    }
+
+    .add > input[type=text]
+    {
+      border-bottom: 0.1rem solid #8160a9 !important; // 30 bold
+      color: #5166b0; // 10 bold
+    }
+
+    .add > input[type=text]::placeholder
+    {
+      color: #5166b0b3; // 10 normal
+    }
+
+    input[type=text]:not(.add > input) {
+      color: #dae0f1; // 60 bold
+    }
+
+    .icon-false-action-color
+    {
+      color: #dae0f1; // 60 bold
+    }
+
+    .icon-true-action-color
+    {
+      color: #dae0f1; // 60 bold
+    }
+
+
+    input[type=checkbox].select:checked ~ label > i,input[type=checkbox].select:checked ~ label{
+      color: #8160a9 !important; // 30 bold
+    }
+
+    .cdk-drag-preview.option-delete::after{
+      color: #5166b0b3; // 10 normal
+    }
+
+    .cdk-drag-preview.option-edit::after{
+      color: #5166b0b3; // 10 normal
+    }
+
+    .cdk-drag-preview.option-info::before{
+      color: #5166b0b3; // 10 normal
+    }
+
+    .cdk-drag-preview.option-reply::before{
+      color: #5166b0b3; // 10 normal #5166b066
+    }
+
+    .navbar-fixed-top{
+      background-color: #8160a9; // 30 bold
+    }
+  }
+
+  #edit{
+    border-bottom-width: 0.1rem;
+    border-bottom-style: solid;
+  }
+
+  .reply
+    {
+      border-left-width: 0.1rem;
+      border-left-style: solid;
+    }
+
+    input[type=checkbox].select:checked ~ label > i,input[type=checkbox].select:checked ~ label{
+      color: #8160a9 !important;
+    }
+
+    .cdk-drag-preview.option-delete::after{
+      color: #5166b066;
+    }
+
+    .cdk-drag-preview.option-edit::after{
+      color: #5166b066;
+    }
+
+    .cdk-drag-preview.option-info::before{
+      color: #5166b066;
+    }
+
+    .cdk-drag-preview.option-reply::before{
+      color: #5166b066;
+    }
+
+  .added
+  {
+    filter: opacity(0.6);
+  }
+
+  .blank
+  {
+    border-width: 0.1rem;
+    border-style: dashed;
+    border-radius: 1rem;
+    width: 100%;
+    margin: 10rem auto 0;
+    text-align: justify;
+    padding: 1rem;
+  }
+// End Theme Dependency Styles
+
+
+// Screen Dependency Styles
+
+@media only screen and(max-device-width:900px)
+{
+  h1{
+    font-size: 2rem;
+  }
+
+  h2{
+    font-size: 1.7rem;
+  }
+
+  h3{
+    font-size: 1.4rem;
+  }
+
+  h4{
+    font-size: 1.1rem;
+  }
+
+  h5{
+    font-size: 0.25rem;
+  }
+
+
+  img.logo
+  {
+    width: 40%;
+    margin: 6rem auto 0;
+  }
+
+  .horizontal-list > li
+  {
+    display: inline-block;
+    margin-left: 1rem;
+    width: fit-content;
+  }
+
+  .horizontal-list > li:first-child
+  {
+    margin-left: 0.5rem !important;
+  }
+
+  .icon
+  {
+    padding-right: 0.5rem;
+  }
+
+  .free-space-top-x
+  {
+    margin-top: 1rem;
+  }
+
+  .free-space-top-2x
+  {
+    margin-top: 2rem;
+  }
+
+  .free-space-top-3x
+  {
+    margin-top: 3rem;
+  }
+
+  .free-space-top-5x
+  {
+    margin-top: 5rem;
+  }
+
+  .padding-x
+  {
+    padding: 1rem 1rem 0.4rem;
+  }
+
+  .padding-2x
+  {
+    padding: 5rem 2rem;
+  }
+
+  .input-padding-x
+  {
+    padding: 0.5rem 1rem;
+  }
+
+  .large
+  {
+    font-size: 1.7rem;
+  }
+
+  .medium
+  {
+    font-size: 1.5rem;
+  }
+
+  .x-small
+  {
+    font-size: 1.1rem;
+  }
+
+  .small
+  {
+    font-size: 1.2rem;
+  }
+
+  .x-large
+  {
+    font-size: 2.5rem;
+  }
+
+  .x2-large
+  {
+    font-size: 3.4rem;
+  }
+
+  #edit > input
+  {
+    width: 85%;
+    padding: 0.6rem 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .nav-bar
+  {
+    padding: 1rem 0;
+  }
+
+  .soft-list > li
+  {
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .icon-left
+  {
+    padding-left: 0.5rem;
+  }
+
+  .list-item
+  {
+    margin: 2rem auto 1.5rem;
+  }
+
+  .add > input[type=text]
+  {
+    width: 87%;
+    border-bottom-width: 0.1rem !important;
+    border-bottom-style: solid !important;
+  }
+
+  .menu > ul
+  {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .menu{
+    min-height: 35%;
+    max-height: 70%;
+    bottom: -70%;
+    border-radius: 2rem 2rem 0 0;
+    padding: 1rem 1rem 2rem 3rem;
+  }
+
+  .color
+  {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 3rem;
+  }
+
+  .user-img
+  {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+  }
+  .date{
+    margin-left: -0.45rem;
+  }
+
+
+  .cdk-drag-preview {
+    padding: 1rem 1rem 0.4rem;
+  }
+
+  .cdk-drag-preview.option-delete::after
+  {
+    right: -2rem;
+    top: 35%;
+    font-size: 2rem;
+  }
+
+  .cdk-drag-preview.option-edit::after
+  {
+    right: -2rem;
+    top: 35%;
+    font-size: 1.8rem;
+  }
+
+  .cdk-drag-preview.option-info::before
+  {
+    left: -2.3rem;
+    top: 35%;
+    font-size: 2rem;
+  }
+
+  .cdk-drag-preview.option-reply::before
+  {
+    left: -3.3rem;
+    top: 0;
+    font-size: 2rem;
+  }
+
+  .navbar-fixed-top
+  {
+    top: -4rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .navbar-fixed-top > li
+  {
+    margin-right: 1rem;
+  }
+
+  .top-menu-open {
+    top: 0rem !important;
+  }
+}
+
+// End Screen Dependency Styles

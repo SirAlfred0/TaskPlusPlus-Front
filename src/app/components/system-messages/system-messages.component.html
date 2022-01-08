@@ -1,0 +1,14 @@
+<section class="padding-2x" #focusElement>
+  <ul class="free-space-top-x">
+    <ng-container *ngFor="let item of messages">
+      <h4 class="date free-space-top-2x" [style.color]="theme.Color10Fade" *ngIf="CanShow(item.CreationAt)">{{item.CreationAt | date:'MMM d , y'}}</h4>
+      <li  class="list-item padding-x message" [style.background-color]="theme.Color30Bold">
+        <h3 [style.color]="theme.Color30Bold">System</h3>
+        <p class="free-space-top-x medium" [style.color]="theme.Color30Bold">
+          {{item.Content}}
+        </p>
+      </li>
+    </ng-container>
+  </ul>
+</section>
+<app-nav-system-messages></app-nav-system-messages>

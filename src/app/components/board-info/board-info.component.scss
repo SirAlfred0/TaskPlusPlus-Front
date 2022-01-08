@@ -1,0 +1,66 @@
+// Global Styles
+
+.user-profile
+{
+  display: inline-block;
+  vertical-align: text-top;
+  border-radius: 1.3rem;
+}
+
+
+input[type=checkbox]:checked ~ #edit
+{
+  display: block;
+}
+
+input[type=checkbox]:checked ~ #self
+{
+  display: none;
+}
+// End Global Styles
+
+// Theme Dependecy Styles
+
+
+
+// End Theme Dependcy Styles
+
+// Screen Dependecy Styles
+
+@media only screen and(max-device-width:900px)
+{
+
+  .user-profile
+  {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-right: 1rem;
+  }
+
+  .padding-around-x
+  {
+    padding: 0.5rem 0.5rem 0.3rem;
+    border-radius: 0rem 0.7rem 0 0 !important;
+  }
+
+  .soft-list > li
+  {
+    border-radius: 0.7rem 0 0.7rem 0;
+    padding: 0.5rem 0.5rem 0.3rem;
+  }
+
+  .tags.horizontal-list > li{
+    margin-bottom: 1rem !important;
+  }
+
+  .tags.horizontal-list > li:first-of-type{
+    margin-top: 1rem !important;
+  }
+}
+
+// End Screen Dependency Styles
+
+
+
+
+

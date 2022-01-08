@@ -1,0 +1,28 @@
+.options > li
+{
+
+  padding: 1rem 2rem;
+}
+
+.options > li:not(:last-of-type)
+{
+  border-bottom-width: 0.1rem;
+  border-bottom-style: solid;
+}
+
+.options > li > span
+{
+  display: inline-block;
+  text-align: center;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  border-radius: 50%;
+  background-color: #f00;
+  margin-left: 0.5rem;
+}
+
+.padding-x
+{
+  padding-left: 0;
+  padding-right: 0;
+}

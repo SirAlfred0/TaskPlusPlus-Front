@@ -1,0 +1,207 @@
+
+
+// global styles
+
+  section{
+    position: relative;
+    overflow-x: hidden;
+    text-align: center;
+  }
+
+  input[type=radio]
+  {
+    display: none;
+  }
+
+  h2,p{
+    text-align: center;
+    font-weight: normal;
+  }
+
+  div.pages{
+    width: 300%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: all 0.6s ease-out;
+  }
+
+  div.pages section{
+    width: 33%;
+    display: inline-block;
+  }
+
+  ul.pages > li
+  {
+    display: inline-block;
+  }
+
+  a.button{
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    display: inline-block;
+  }
+
+  a.button:active
+  {
+    transform: scale(0.9);
+  }
+
+  input[type=text]
+  {
+    display: block;
+    width: 60%;
+  }
+
+  ul.pages > li > label
+  {
+    display: inline-block;
+    border-radius: 50%;
+  }
+
+  input[type=radio]:nth-child(1):checked ~ div.pages
+  {
+    left: 0;
+  }
+
+  input[type=radio]:nth-child(2):checked ~ div.pages
+  {
+    margin-left: -100%;
+  }
+
+  input[type=radio]:nth-child(3):checked ~ div.pages
+  {
+    margin-left: -200%;
+  }
+
+  input[type=text].login-input
+  {
+    border-radius: 1rem;
+  }
+
+  div.input
+  {
+    position: relative;
+  }
+
+  div.input > span
+  {
+    position: absolute;
+    z-index: 1;
+    padding: 0.1rem 0.3rem;
+  }
+//end global styles
+
+
+
+//theme dependency styles
+
+  ul.pages > li
+  {
+    background-color: #fff;
+  }
+
+  p,input[type=text]{
+    color: #555555;
+  }
+
+  div.input > span
+  {
+    color: #555555;
+    background-color: #fff;
+  }
+
+  i{
+    color: #f491a4;
+  }
+
+  a{
+    background-color: #7054a3;
+    color: #fff;
+  }
+
+  ul.pages > li > label
+  {
+    background-color: #e6e7e8;
+  }
+
+  input[type=radio]:nth-child(1):checked ~ ul.pages > li:nth-child(1) > label
+  {
+    background-color: #f491a4;
+  }
+
+  input[type=radio]:nth-child(2):checked ~ ul.pages > li:nth-child(2) > label
+  {
+    background-color: #f491a4;
+  }
+
+  input[type=radio]:nth-child(3):checked ~ ul.pages > li:nth-child(3) > label
+  {
+    background-color: #f491a4;
+  }
+
+  input[type=text].login-input
+  {
+    border-color: #555555;
+  }
+
+//end theme dependency styles
+
+// screen Dependency Styles
+
+@media only screen and (max-device-width:900px) {
+
+  h1,h2,p{
+    width: 70%;
+    margin: 3rem auto 0;
+  }
+
+  ul.pages{
+  margin: 3rem auto;
+  }
+
+  ul.pages > li
+  {
+    margin-right: 2rem;
+  }
+
+  ul.pages > li > label
+  {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+
+  input[type=text].login-input
+  {
+    padding: 0.7rem 1rem;
+    margin: 5rem auto 0;
+  }
+
+  a{
+    padding: 1rem 2rem;
+    margin: 4rem auto 0;
+  }
+
+  i{
+    padding-right: 1.5rem;
+  }
+
+  h3{
+    margin: 6rem 0;
+  }
+
+  div.input > span
+  {
+    left: 24%;
+    top: -0.7rem;
+  }
+  }
+
+// End Screen Dependency Styles
+
+
+
+
+

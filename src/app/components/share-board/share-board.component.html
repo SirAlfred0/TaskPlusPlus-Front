@@ -1,0 +1,20 @@
+<section class="menu menu-transition" [style.background-color]="theme.Color60Bold" [ngClass]="open ? 'open': ''">
+  <div class="free-space-top-x">
+    <i class="icon right-align icon-Close x-large" [style.color]="theme.Color10Fade" (click)="CloseMenu()"></i>
+  </div>
+  <h2 class="free-space-top-3x" [style.color]="theme.Color10Normal"><i [style.color]="theme.Color10Normal" class="icon icon-Contact-List large"></i>Contact List</h2>
+  <ul class="free-space-top-2x">
+    <li class="free-space-top-x" *ngFor="let item of friends; let ind = index">
+      <!-- <img src="./assets/icons/Icon.svg" class="left-align user-img"> -->
+      <h2 [style.color]="theme.Color10Normal">
+        {{item.FirstName  | caption :15}}
+        <input type="checkbox" [id]="'item' + (ind + 1)" [value]="item.FriendId"  appSelect [mainColor]="theme.Color10Normal" [color]="theme.Color30Bold" (change)="OnCheck($event)">
+        <label [for]="'item' + (ind + 1)">
+          <i class="icon right-align icon-Selectbox x-large"></i>
+        </label>
+      </h2>
+    </li>
+  </ul>
+  <h3 class="free-space-top-2x" [style.color]="theme.Color10Bold">{{shareInfo.ShareToList.length}} contact selected</h3>
+  <i class="icon right-align icon-Share x2-large" [style.color]="theme.Color10Fade" (click)="shareInfo.ShareToList.length != 0 ? Share() : CloseMenu()"></i>
+</section>

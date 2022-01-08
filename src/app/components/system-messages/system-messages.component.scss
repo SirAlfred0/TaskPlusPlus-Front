@@ -1,0 +1,21 @@
+
+  .date
+  {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .message p{
+    display: inline-block;
+    width: 95%;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+
+  @media only screen and(max-device-width:900px){
+    .date
+    {
+      padding: 0.3rem;
+    }
+  }

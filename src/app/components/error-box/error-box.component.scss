@@ -1,0 +1,25 @@
+.box{
+  position: fixed;
+  top: 30%;
+  z-index: 9;
+  left: 50%;
+  background-color: #f00;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+  max-width: 70%;
+}
+
+.box > p
+{
+  text-align: center;
+}
+
+.active
+{
+  transition: opacity 0.3s ease-out;
+  opacity: 1;
+}

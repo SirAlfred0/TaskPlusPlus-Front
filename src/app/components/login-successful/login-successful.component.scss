@@ -1,0 +1,41 @@
+
+// Global Styles
+
+h1,h2,h3{
+  text-align: center;
+}
+
+// End Global Styles
+
+// Theme Dependecy Styles
+
+.blue{
+  color: #5489a0;
+}
+
+// End Theme Depedency Styles
+
+// Screen Dependency Styles
+
+@media only screen and(max-device-width:900px)
+{
+  h1
+  {
+    width: 70%;
+    margin: 9rem auto 0;
+  }
+
+  h2
+  {
+    margin-top: 14rem;
+  }
+
+  i{
+    padding-right: 1.5rem;
+    font-size: 3rem;
+  }
+}
+
+// End Screen Depedency Styles
+
+

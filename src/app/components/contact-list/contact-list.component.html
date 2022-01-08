@@ -1,0 +1,35 @@
+<section class="padding-2x" #focusElement>
+  <div class="free-space-top-2x add">
+    <input type="text" [style.border-bottom-color]="theme.Color30Bold" [style.color]="theme.Color10Bold" placeholder="09*********" class="medium input-padding-x" #addInput>
+    <i class="icon-left icon-Add-Circle x-large" [style.color]="theme.Color10Fade" (click)="AddFriend(addInput.value)"></i>
+  </div>
+  <h1 class="free-space-top-2x" [style.color]="theme.Color30Bold">Contact List</h1>
+  <ul class="padding-x free-space-top-2x">
+    <h3 [style.color]="theme.Color10Normal"><i [style.color]="theme.Color10Normal" class="icon icon-Add-Contact medium"></i> Pending Requests</h3>
+    <li [style.background-color]="theme.Color30Bold" class="list-item padding-x" [ngClass]="item.Bio == '' ? 'extra-bottom-padding' : ''" *ngFor="let item of requests">
+      <img class="user-img left-align" src="./assets/icons/Icon.svg">
+      <h1 [style.color]="theme.Color60Bold" >
+        {{(item.FirstName + ' ' + item.LastName) | caption :35}}
+        <i class="icon right-align icon-Ok-Circle x-large" [style.color]="theme.Color60Bold" (click)="ApplyRequestResponce(item.Id,true)"></i>
+        <i class="icon right-align icon-Close x-large" [style.color]="theme.Color60Bold" (click)="ApplyRequestResponce(item.Id,false)"></i>
+      </h1>
+      <h3 [style.color]="theme.Color60Fade">
+        {{item.Bio}}
+      </h3>
+    </li>
+  </ul>
+
+  <ul class="padding-x free-space-top-2x" cdkDropList (cdkDropListDropped)="Drop($event)">
+    <h3 [style.color]="theme.Color10Normal"><i [style.color]="theme.Color10Normal" class="icon icon-Contact-List medium"></i> Friend List</h3>
+    <li [style.background-color]="theme.Color30Bold" class="list-item padding-x option-delete" [cdkDragData]="item.Id" [ngClass]="item.Bio == '' ? 'extra-bottom-padding' : ''" *ngFor="let item of friends" [cdkDragStartDelay]="200" cdkDragPreviewContainer="parent"  cdkDrag cdkDragLockAxis="x">
+      <img class="user-img left-align" src="./assets/icons/Icon.svg">
+      <h1 [style.color]="theme.Color60Bold">
+        {{(item.FirstName + ' ' + item.LastName) | caption :35}}
+      </h1>
+      <h3 [style.color]="theme.Color60Fade">
+        {{item.Bio}}
+      </h3>
+    </li>
+  </ul>
+</section>
+<app-nav-contact-list (add)="Focus(focusElement,addInput)"></app-nav-contact-list>

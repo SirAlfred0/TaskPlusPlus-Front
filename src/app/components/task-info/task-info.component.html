@@ -1,0 +1,14 @@
+<section class="menu menu-transition" [style.background-color]="theme.Color60Bold" [ngClass]="open ? 'open': ''">
+  <div class="free-space-top-x">
+    <i class="icon right-align icon-Close x-large" [style.color]="theme.Color10Fade" (click)="CloseMenu()"></i>
+  </div>
+  <ul class="free-space-top-2x horizontal-list soft-list" [style.color]="'#fff'">
+    <h3 [style.color]="theme.Color10Normal">Tags</h3>
+    <li class="free-space-top-x" *ngFor="let item of tags" appSetBgColor [bgColor]="item.Color" (click)="RemoveAsign(item.TagListId)" >{{item.Caption  | caption :15}}</li>
+  </ul>
+
+  <ul class="free-space-top-2x horizontal-list soft-list" [style.color]="'#fff'">
+    <h3 [style.color]="theme.Color10Normal">Boards Tag List</h3>
+    <li class="free-space-top-x" *ngFor="let item of boardTags" [ngClass]="IsAdded(item.Id) ? 'added' : ''" appSetBgColor [bgColor]="item.Color" (click)="!IsAdded(item.Id) ? AsignTag(item.Id) : ''">{{item.Caption  | caption :15}}</li>
+  </ul>
+</section>

@@ -1,0 +1,61 @@
+
+
+<section class="padding-2x" [ngClass]="menuOpen ? 'not-mouse-event' : ''">
+  <header>
+    <h1 [style.color]="theme.Color10Bold">{{ParentInfo.ParentName}}<h4 [style.color]="theme.Color10Normal" class=" right-align">{{ParentInfo.CreationDate | date:'MMM d , y'}}</h4></h1>
+    <h3 [style.color]="theme.Color10Normal" class="free-space-top-x">Owner: {{ParentInfo.Owner}}</h3>
+  </header>
+  <ul class="free-space-top-3x" cdkDropList (cdkDropListDropped)="DropEmployee($event)">
+    <h3 [style.color]="theme.Color10Normal"><i class="icon large icon-Employees"></i>Employees <i *ngIf="boardPermissions.IsOwner" [style.color]="theme.Color10Fade" class="icon large right-align icon-Add-Contact" (click)="OpenMenu('share')"></i></h3>
+    <li [style.background-color]="theme.Color30Bold" class="list-item padding-x" [ngClass]="{'option-delete': boardPermissions.IsOwner}" *ngFor="let item of employees" [cdkDragStartDelay]="200" cdkDragPreviewContainer="parent"  cdkDrag [cdkDragData]="item.ShareId" cdkDragLockAxis="x">
+      <div class="left-align">
+        <img src="./assets/icons/Icon.svg" class="user-profile">
+      </div>
+      <h1 [style.color]="theme.Color60Bold">{{(item.FirstName + ' ' + item.LastName) | caption :25}}<i class="icon large right-align icon-Edit" [style.color]="theme.Color60Bold" (click)="OpenMenu('asignRole');AddUserInfo(item.Id)"></i></h1>
+      <h3 [style.color]="theme.Color60Fade">{{item.Bio}}</h3>
+      <ul class="horizontal-list free-space-top-x soft-list" [style.color]="'#fff'">
+        <li class="x-small padding-right-x" *ngFor="let r of item.Roles" appSetBgColor [bgColor]="r.Color">{{r.Caption}}</li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="free-space-top-3x" cdkDropList (cdkDropListDropped)="DropRole($event)">
+    <h3 [style.color]="theme.Color10Normal"><i class="icon large icon-Roll"></i>Rolls <i *ngIf="boardPermissions.IsOwner" [style.color]="theme.Color10Fade" class="icon large right-align icon-Add-Circle" (click)="OpenMenu('addRole')"></i></h3>
+    <li [style.background-color]="theme.Color30Bold" class="list-item padding-x" [ngClass]="{'option-delete': boardPermissions.IsOwner}" *ngFor="let item of roles" [cdkDragStartDelay]="200" cdkDragPreviewContainer="parent" cdkDrag [cdkDragData]="{id: item.Id,isUsing: item.IsUsing}" cdkDragLockAxis="x">
+      <h1 [style.color]="theme.Color60Bold">{{item.Caption  | caption :25}}<i *ngIf="boardPermissions.IsOwner" [style.color]="theme.Color60Bold" class="icon right-align icon-Edit large" (click)="OpenMenu('editRole');GetRoleInfo(item);"></i><i [style.color]="theme.Color60Bold" class="icon large icon-Tag right-align" (click)="OpenMenu('roleTags');GetRoleInfo(item);"></i></h1>
+      <ul class="horizontal-list free-space-top-x soft-list" [style.color]="'#fff'">
+        <li class="x-small" appSetBgColor [bgColor]="item.Color">Task
+          <i class="icon-left icon-Checkbox-Full" *ngIf="item.ReadTask && item.WriteTask"></i>
+          <i class="icon-left icon-Checkbox-Half" *ngIf="item.ReadTask && !item.WriteTask"></i>
+          <i class="icon-left icon-Checkbox-Empty" *ngIf="!item.ReadTask && !item.WriteTask"></i>
+        </li>
+        <li class="x-small" appSetBgColor [bgColor]="item.Color">Comment
+          <i class="icon-left icon-Checkbox-Full" *ngIf="item.ReadComment && item.WriteComment"></i>
+          <i class="icon-left icon-Checkbox-Half" *ngIf="item.ReadComment && !item.WriteComment"></i>
+          <i class="icon-left icon-Checkbox-Empty" *ngIf="!item.ReadComment && !item.WriteComment"></i>
+        </li>
+        <!--
+        <li class="x-small" appSetBgColor [bgColor]="item.Color">Complete
+          <i class="icon-left icon-Checkbox-Full" *ngIf="item.CompleteTask"></i>
+          <i class="icon-left icon-Checkbox-Empty" *ngIf="!item.CompleteTask"></i>
+        </li>
+        -->
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="free-space-top-3x tags horizontal-list" [style.color]="'#fff'">
+    <h3 [style.color]="theme.Color10Normal"><i class="icon large icon-Tag"></i>Tags <i *ngIf="boardPermissions.IsOwner" [style.color]="theme.Color10Fade" class="icon large right-align icon-Add-Circle" (click)="OpenMenu('addTag')"></i></h3>
+    <li class="padding-around-x small" *ngFor="let item of tags" appSetBgColor [bgColor]="item.Color">
+      {{item.Caption  | caption :15}}
+    </li>
+  </ul>
+</section>
+<app-nav-board-info></app-nav-board-info>
+<app-darken [Darken]="menuOpen"></app-darken>
+<app-share-board [activeRequestOn]="ActiveRequestOn()" (shareBoardEvent)="ShareBoard($event)" [friends]="friends" [accessToken]="accessToken" [parentId]="parentId"  [open]="menu=='share' ? menuOpen : false" (close)="CloseMenu()"></app-share-board>
+<app-asign-role [activeRequestOn]="ActiveRequestOn()" (DemoteEvent)="boardPermissions.IsOwner ? Demote($event) : LogError(errors['NotOwner'])" [employeesRoles]="employeesRoles" (AsignRoleEvent)="boardPermissions.IsOwner ? AsignRole($event) : LogError(errors['NotOwner'])" [boardId]="parentId" [accessToken]="accessToken" [userId]="userId" [open]="menu=='asignRole' ? menuOpen : false" (close)="CloseMenu()" [roles]="roles"></app-asign-role>
+<app-tags-info [activeRequestOn]="ActiveRequestOn()" (EditTagEvent)="EditTag($event)" (removeTagEvent)="RemoveTag($event)" [tags]="tags" [accessToken]="accessToken" [parentId]="parentId"  [open]="menu=='addTag' ? menuOpen : false" (close)="CloseMenu()" (newTagEvent)="AddTag($event)"></app-tags-info>
+<app-role-info [activeRequestOn]="ActiveRequestOn()" (EditRoleEvent)="EditRole($event)" [role]="role" [accessToken]="accessToken" [boardId]="parentId"  [open]="menu=='editRole' ? menuOpen : false" (close)="CloseMenu()"></app-role-info>
+<app-add-role [activeRequestOn]="ActiveRequestOn()" [accessToken]="accessToken" (newRoleEvent)="AddRole($event)" [boardId]="parentId"  [open]="menu=='addRole' ? menuOpen: false" (close)="CloseMenu()"></app-add-role>
+<app-role-tags-info [activeRequestOn]="ActiveRequestOn()" (RemoveTagFromRoleEvent)="boardPermissions.IsOwner ? RemoveTagFromRole($event) : LogError(errors['NotOwner'])" (AsignTagToRoleEvent)="boardPermissions.IsOwner ? AsignTagToRole($event) : LogError(errors['NotOwner'])" [roleId]="role.Id" [accessToken]="accessToken" [boardTags]="tags" [tags]="role.Tags" [boardId]="parentId" [open]="menu == 'roleTags' ? menuOpen : false" (close)="CloseMenu()"></app-role-tags-info>
+<app-error-box [Message]="errorMessage"></app-error-box>
